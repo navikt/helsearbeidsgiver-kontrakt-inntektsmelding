@@ -1,0 +1,106 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>no.nav.helsearbeidsgiver</groupId>
+
+    <artifactId>helsearbeidsgiver-kontrakt-inntektsmelding</artifactId>
+    <name>Kontrakter - inntektsmelding (Klonet fra FP-prosjektet)</name>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <argLine>-Xms256m -Dlog.level.no.nav=WARN -Dfile.encoding=${project.build.sourceEncoding}</argLine>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <!-- JAXB BOM-->
+<!--        <dependency>-->
+<!--            <groupId>org.glassfish.jaxb</groupId>-->
+<!--            <artifactId>jaxb-bom</artifactId>-->
+<!--            <version>2.3.6</version>-->
+<!--            <scope>import</scope>-->
+<!--            <type>pom</type>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.4.0-b180830.0438</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jaxb-xew-plugin</groupId>
+            <artifactId>jaxb-xew-plugin</artifactId>
+            <version>1.11</version>
+        </dependency>
+        <!--
+         | We need to update the jaxb-xjc dependency from v2.1.13 to v2.2.11
+         | used by the jaxb-xew-plugin (v2.1.13 does not have the required
+         | method com.sun.codemodel.JAnnotatable.annotations()Ljava/util/Collection).
+         -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-xjc</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <version>2.5.0</version>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <sources>
+                                <source>src/main/resources/xsd/</source>
+                            </sources>
+                            <xjbSources>
+                                <xjbSource>src/main/resources/xjb/</xjbSource>
+                            </xjbSources>
+<!--                            <packageName>${xsd.packagename}</packageName>-->
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <extension>true</extension>
+                            <arguments>-Xxew</arguments>
+                        </configuration>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.jaxb-xew-plugin</groupId>
+                        <artifactId>jaxb-xew-plugin</artifactId>
+                        <version>1.11</version>
+                    </dependency>
+                    <!--
+                     | We need to update the jaxb-xjc dependency from v2.1.13 to v2.2.11
+                     | used by the jaxb-xew-plugin (v2.1.13 does not have the required
+                     | method com.sun.codemodel.JAnnotatable.annotations()Ljava/util/Collection).
+                     -->
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>2.2.11</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
