@@ -20,14 +20,6 @@
     </properties>
 
     <dependencies>
-        <!-- JAXB BOM-->
-<!--        <dependency>-->
-<!--            <groupId>org.glassfish.jaxb</groupId>-->
-<!--            <artifactId>jaxb-bom</artifactId>-->
-<!--            <version>2.3.6</version>-->
-<!--            <scope>import</scope>-->
-<!--            <type>pom</type>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
@@ -67,7 +59,6 @@
                             <xjbSources>
                                 <xjbSource>src/main/resources/xjb/</xjbSource>
                             </xjbSources>
-<!--                            <packageName>${xsd.packagename}</packageName>-->
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <extension>true</extension>
                             <arguments>-Xxew</arguments>
