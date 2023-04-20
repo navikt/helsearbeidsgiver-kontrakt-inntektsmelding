@@ -50,6 +50,11 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics-annotate</artifactId>
+            <version>1.1.0</version>
+        </dependency>
         <!--
          | We need to update the jaxb-xjc dependency from v2.1.13 to v2.2.11
          | used by the jaxb-xew-plugin (v2.1.13 does not have the required
@@ -80,7 +85,10 @@
                             </xjbSources>
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <extension>true</extension>
-                            <arguments>-Xxew</arguments>
+                            <arguments>
+                                <argument>-Xxew</argument>
+                                <argument>-Xannotate</argument>
+                            </arguments>
                         </configuration>
                         <goals>
                             <goal>xjc</goal>
@@ -103,6 +111,11 @@
                         <artifactId>jaxb-xjc</artifactId>
                         <version>2.2.11</version>
                     </dependency>
+                    <dependency>
+                        <groupId>org.jvnet.jaxb2_commons</groupId>
+                        <artifactId>jaxb2-basics-annotate</artifactId>
+                        <version>1.1.0</version>
+                    </dependency>
                 </dependencies>
             </plugin>
             <plugin>
@@ -110,7 +123,6 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
             </plugin>
-
         </plugins>
     </build>
 

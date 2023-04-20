@@ -3,10 +3,18 @@
 			   xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
 			   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
 			   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:annox="http://annox.dev.java.net"
 			   jaxb:extensionBindingPrefixes="xjc">
 
 	<jaxb:globalBindings generateElementProperty="false">
 		<xjc:javaType name="java.time.LocalDate" xmlType="xs:date" adapter="no.seres.xsd.nav.inntektsmelding_m.DateAdapter" />
 		<xjc:javaType name="java.time.LocalDateTime" xmlType="xs:dateTime" adapter="no.seres.xsd.nav.inntektsmelding_m.DateTimeAdapter" />
+
+
 	</jaxb:globalBindings>
+    <jaxb:bindings schemaLocation="../xsd/Inntektsmelding20181211_V7.xsd" node="/xs:schema">
+        <jaxb:bindings multiple="true" node="//xsd:element[@nillable='true']">
+            <annox:annotate target="field">@javax.xml.bind.annotation.XmlElement(nillable = false)</annox:annotate>
+        </jaxb:bindings>
+    </jaxb:bindings>
 </jaxb:bindings>
