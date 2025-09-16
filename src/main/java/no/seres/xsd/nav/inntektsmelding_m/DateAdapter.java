@@ -1,11 +1,11 @@
 package no.seres.xsd.nav.inntektsmelding_m;
 
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
-
-import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class DateAdapter extends XmlAdapter<String, LocalDate> {
 
