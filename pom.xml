@@ -7,7 +7,7 @@
 
     <artifactId>helsearbeidsgiver-kontrakt-inntektsmelding</artifactId>
     <name>Kontrakter - inntektsmelding (Klonet fra FP-prosjektet)</name>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <packaging>jar</packaging>
 
     <distributionManagement>
